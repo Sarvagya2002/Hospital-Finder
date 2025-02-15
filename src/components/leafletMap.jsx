@@ -11,6 +11,12 @@ export default function LeafletMap({ user, hospitals }) {
     iconAnchor: [15, 30],
   });
 
+  const hospitalIcon = new L.Icon({
+    iconUrl: "https://www.svgrepo.com/show/444828/location-1.svg",
+    iconSize: [30, 30],
+    iconAnchor: [15, 30],
+  });
+
   const [location, setLocation] = useState(null);
 
   useEffect(() => {
@@ -38,7 +44,7 @@ export default function LeafletMap({ user, hospitals }) {
 
           {/* Display Nearby Hospitals */}
           {hospitals.map((hospital) => (
-            <Marker key={hospital.id} position={[hospital.location.lat, hospital.location.lng]}>
+            <Marker key={hospital.id} icon={hospitalIcon} position={[hospital.location.lat, hospital.location.lng]}>
               <Popup>
                 <strong>{hospital.name}</strong>
                 <br />
